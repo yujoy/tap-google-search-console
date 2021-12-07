@@ -408,6 +408,8 @@ def sync(client, config, catalog, state):
 
                         LOGGER.info('START Syncing Stream: {}, Site: {}, Type: {}, {} to {}'.format(
                             stream_name, site, sub_type, start_str, end_str))
+                        if sub_type == 'discover':
+                            dimensions_list = ['date', 'page', 'country']
                         total_records = sync_endpoint(
                             client=client,
                             catalog=catalog,
