@@ -366,6 +366,8 @@ def sync(client, config, catalog, state):
                 # loop through each sub type
                 sub_types = endpoint_config.get('sub_types', ['self'])
                 for sub_type in sub_types:
+                    if sub_type == 'discover':
+                        dimensions_list = ['date', 'page', 'country']
                     sub_type_total = 0
 
                     # Initialize date window

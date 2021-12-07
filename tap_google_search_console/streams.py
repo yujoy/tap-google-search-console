@@ -46,7 +46,7 @@ STREAMS = {
         },
         'bookmark_type': 'datetime',
         'pagination': 'body',
-        'sub_types': ['web', 'image', 'video', 'news', 'discover']
+        'sub_types': ['discover']
     },
 
     'performance_report_date': {
