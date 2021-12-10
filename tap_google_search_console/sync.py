@@ -408,8 +408,10 @@ def sync(client, config, catalog, state):
 
                         LOGGER.info('START Syncing Stream: {}, Site: {}, Type: {}, {} to {}'.format(
                             stream_name, site, sub_type, start_str, end_str))
-                        LOGGER.info('testing. dimensions_list = {}'.format(
-                            dimensions_list))
+                        if sub_type in ('discover', 'googleNews'):
+                            body['dimensions'] = ['date', 'page', 'country']
+                        LOGGER.info('for testing - dimensions_list = {}, body = {}'.format(
+                            dimensions_list, body))
                         total_records = sync_endpoint(
                             client=client,
                             catalog=catalog,
