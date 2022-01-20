@@ -12,7 +12,7 @@ BASE_URL = 'https://www.googleapis.com/webmasters/v3'
 # Google Search Console is generally delayed 2-3 days
 # However, delays up to 10 days have occurred in the past 6 months (late 2019, early 2020)
 # Reference: https://support.google.com/webmasters/answer/96568?hl=en
-ATTRIBUTION_DAYS = 14
+ATTRIBUTION_DAYS = 5
 DATE_WINDOW_SIZE = 30
 
 def write_schema(catalog, stream_name):
