@@ -366,8 +366,8 @@ def sync(client, config, catalog, state):
                 # loop through each sub type
                 sub_types = endpoint_config.get('sub_types', ['self'])
                 for sub_type in sub_types:
-                    if sub_type == 'discover':
-                        dimensions_list = ['date', 'page', 'country']
+                    if sub_type in ('discover', 'googleNews'):
+                        dimensions_list = [x for x in dimensions_list if x not in ('device', 'query')]
                     sub_type_total = 0
 
                     # Initialize date window
@@ -409,7 +409,8 @@ def sync(client, config, catalog, state):
                         LOGGER.info('START Syncing Stream: {}, Site: {}, Type: {}, {} to {}'.format(
                             stream_name, site, sub_type, start_str, end_str))
                         if sub_type in ('discover', 'googleNews'):
-                            body['dimensions'] = ['date', 'page', 'country']
+                            body['dimensions'] = [x for x in body['dimensions'] if x not in ('device', 'query')]
+                            body.pop('aggregationType')
                         LOGGER.info('for testing - dimensions_list = {}, body = {}'.format(
                             dimensions_list, body))
                         total_records = sync_endpoint(
